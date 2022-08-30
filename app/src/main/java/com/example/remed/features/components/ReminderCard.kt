@@ -1,4 +1,4 @@
-package com.example.remed.features
+package com.example.remed.features.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -7,7 +7,6 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.testTag
@@ -28,7 +27,7 @@ fun ReminderCard(title: String,
         .wrapContentHeight(),
         shape = RoundedCornerShape(12.dp),
         elevation = 5.dp,
-        backgroundColor = MaterialTheme.colors.surface,
+        backgroundColor = ReMedTheme.colors.light,
         onClick = onClick) {
             Column(modifier = Modifier.padding(8.dp)) {
 
@@ -38,16 +37,7 @@ fun ReminderCard(title: String,
                 CardBody(text = "One capsule daily, One hour before meals, with one cup of water.",
                     modifier = Modifier.padding(8.dp))
 
-                CardFooter(modifier = Modifier.padding(8.dp))
-
-                Button(onClick = {},
-                    modifier = Modifier,
-                    elevation = ButtonDefaults.elevation(defaultElevation = 6.dp, pressedElevation = (-2).dp),
-                    shape = RoundedCornerShape(22.dp)
-                ) {
-                    Text(text = "Snooze")
-                }
-            }
+                CardFooter(modifier = Modifier.padding(8.dp)) }
     }
 }
 
@@ -62,7 +52,7 @@ fun CardHeader(title: String,
         Text(
             text = title,
             style = MaterialTheme.typography.h6,
-            color = MaterialTheme.colors.onSurface,
+            color = ReMedTheme.colors.textPrimary,
         )
 
         Spacer(modifier = Modifier.weight(1f))
@@ -70,7 +60,7 @@ fun CardHeader(title: String,
         Image(
             painter = painterResource(id = R.drawable.ic_send),
             contentDescription = null,
-            colorFilter = ColorFilter.tint(MaterialTheme.colors.onSurface),
+            colorFilter = ColorFilter.tint(ReMedTheme.colors.textPrimary),
             modifier = Modifier
                 .size(35.dp)
                 .padding(8.dp),
@@ -80,7 +70,7 @@ fun CardHeader(title: String,
         Image(
             painter = painterResource(id = R.drawable.ic_edit),
             contentDescription = null,
-            colorFilter = ColorFilter.tint(MaterialTheme.colors.onSurface),
+            colorFilter = ColorFilter.tint(ReMedTheme.colors.textPrimary),
             modifier = Modifier
                 .size(35.dp)
                 .padding(8.dp),
@@ -96,7 +86,7 @@ fun CardBody(text: String,
         text = text,
         modifier = modifier,
         style = MaterialTheme.typography.body2,
-        color = MaterialTheme.colors.onSurface,
+        color = ReMedTheme.colors.textSecondary,
     )
 }
 
@@ -121,7 +111,7 @@ fun DateWithImage(time: String,
         Image(
             painter = painterResource(id = icon),
             contentDescription = null,
-            colorFilter = ColorFilter.tint(MaterialTheme.colors.onSurface),
+            colorFilter = ColorFilter.tint(ReMedTheme.colors.textSecondary),
             modifier = Modifier
                 .size(32.dp)
                 .padding(8.dp),
@@ -131,7 +121,7 @@ fun DateWithImage(time: String,
             text = time,
             modifier = Modifier,
             style = MaterialTheme.typography.body2,
-            color = MaterialTheme.colors.onSurface,
+            color = ReMedTheme.colors.textSecondary,
         )
     }
 }
@@ -168,7 +158,7 @@ fun SectionCard(section: SubSection, onClick: () -> Unit) {
                 Text(
                     text = section.title,
                     style = MaterialTheme.typography.h6,
-                    color = MaterialTheme.colors.onSurface,
+                    color = ReMedTheme.colors.textPrimary,
                 )
                 Text(
                     text = section.title,

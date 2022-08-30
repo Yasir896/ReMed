@@ -9,9 +9,7 @@ import android.view.animation.AnticipateInterpolator
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -23,12 +21,13 @@ import androidx.navigation.compose.rememberNavController
 import com.example.remed.navigation.AppNavigation
 import com.example.remed.ui.theme.ReMedTheme
 
+@ExperimentalMaterialApi
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         installSplashScreen()
-            /*.apply {
+            .apply {
             setOnExitAnimationListener{ sp ->
                 sp.iconView.animate().rotation(180F).duration = 3000L
                 val slideUp = ObjectAnimator.ofFloat(
@@ -40,13 +39,13 @@ class MainActivity : ComponentActivity() {
                 slideUp.interpolator = AnticipateInterpolator()
                 slideUp.duration = 3000L
                 // Call SplashScreenView.remove at the end of your custom animation.
-                slideUp.doOnEnd { sp.remove()
-
-                    // Run your animation.
-                    slideUp.start()
-            }
+                slideUp.doOnEnd {
+                    sp.remove()
+                }
+                // Run your animation.
+                slideUp.start()
         }
-    }*/
+    }
         WindowCompat.setDecorFitsSystemWindows(window, true)
         setContent {
             val navController = rememberNavController()
@@ -57,11 +56,13 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun ThemeHandler(navController: NavHostController) {
     ReMedTheme {
-        Surface(
-            modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colors.background
-        ) {
-            AppNavigation(navController = navController)
+        Scaffold() {
+            Surface(
+                modifier = Modifier.fillMaxSize(),
+                color = MaterialTheme.colors.background
+            ) {
+                AppNavigation(navController = navController)
+            }
         }
     }
 }

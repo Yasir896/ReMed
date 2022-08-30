@@ -1,12 +1,15 @@
 package com.example.remed.navigation
 
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.remed.features.HomeScree
 import com.example.remed.features.OnBoardingScreen
 
+@ExperimentalMaterialApi
 @Composable
 fun AppNavigation(navController: NavHostController) {
         NavHost(navController = navController,
@@ -16,7 +19,7 @@ fun AppNavigation(navController: NavHostController) {
                 OnBoardingScreen(navController = navController)
             }
             composable(Screens.Home.title) {
-                HomeScree()
+                HomeScree(navController = navController)
             }
         }
 }
