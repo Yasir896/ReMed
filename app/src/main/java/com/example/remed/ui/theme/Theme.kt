@@ -12,7 +12,7 @@ private val DarkColorPalette = ReMedColors(
     uiBackground = White,
     textPrimary = Black,
     textSecondary = Grey,
-    light = White
+    light = Lighter
 )
 
 /*private val LightColorPalette = ReMedColors(
@@ -84,7 +84,7 @@ class ReMedColors(
     fun update(other: ReMedColors) {
         brand = other.brand
         brandSecondary = other.brand
-        uiBackground = other.brand
+        uiBackground = other.uiBackground
         textPrimary = other.textPrimary
         textSecondary = other.textSecondary
         light = other.light

@@ -23,11 +23,11 @@ fun ReminderCard(title: String,
                  onClick: () -> Unit) {
     Card(modifier = Modifier
         .padding(12.dp)
-        .fillMaxWidth()
-        .wrapContentHeight(),
-        shape = RoundedCornerShape(12.dp),
-        elevation = 5.dp,
+        .fillMaxWidth(),
+        shape = MaterialTheme.shapes.large,
+        elevation = 1.dp,
         backgroundColor = ReMedTheme.colors.light,
+        contentColor = ReMedTheme.colors.light,
         onClick = onClick) {
             Column(modifier = Modifier.padding(8.dp)) {
 
