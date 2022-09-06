@@ -1,4 +1,4 @@
-package com.example.remed.features.create_new
+package com.example.remed.features.presentation.create_new
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -16,8 +16,8 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.navigation.NavController
 import coil.annotation.ExperimentalCoilApi
 import com.example.remed.R
-import com.example.remed.features.components.StandardTextField
-import com.example.remed.features.components.TopAppBarWithNav
+import com.example.remed.features.presentation.components.StandardTextField
+import com.example.remed.features.presentation.components.TopAppBarWithNav
 import com.example.remed.navigation.Screens
 import com.example.remed.ui.theme.ReMedTheme
 
@@ -96,8 +96,8 @@ fun TextFieldWithTitle(
                     contentDescription = null,
                     colorFilter = ColorFilter.tint(ReMedTheme.colors.textPrimary),
                     modifier = Modifier
-                        .size(30.dp)
-                        .padding(8.dp),
+                        .size(25.dp)
+                        .padding(5.dp),
                     contentScale = ContentScale.Fit,
                 )
             })
@@ -108,7 +108,7 @@ fun TextFieldWithTitle(
 fun DateTimeSection(startDate: String, endDate: String) {
     Column() {
         Row(Modifier.fillMaxWidth()) {
-            Row(Modifier.weight(.4f)) {
+            Row(Modifier.weight(.5f)) {
                 TextFieldWithTitle(
                     modifier = Modifier,
                     title = "Start Date",
@@ -116,8 +116,8 @@ fun DateTimeSection(startDate: String, endDate: String) {
                     trailingIcon = R.drawable.ic_calander,
                     onValueChange = { })
             }
-            Spacer(modifier = Modifier.weight(.2f))
-            Row(Modifier.weight(.4f)) {
+            Spacer(modifier = Modifier.weight(.1f))
+            Row(Modifier.weight(.5f)) {
                 TextFieldWithTitle(
                     modifier = Modifier,
                     title = "End Date",
@@ -125,8 +125,6 @@ fun DateTimeSection(startDate: String, endDate: String) {
                     trailingIcon = R.drawable.ic_calander,
                     onValueChange = { })
             }
-
-
         }
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -151,7 +149,6 @@ fun DateTimeSection(startDate: String, endDate: String) {
         }
     }
 }
-
 
 @Composable
 @Preview

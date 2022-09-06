@@ -1,4 +1,4 @@
-package com.example.remed.features.components
+package com.example.remed.features.presentation.components
 
 import androidx.compose.material.Divider
 import androidx.compose.runtime.Composable

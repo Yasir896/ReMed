@@ -17,8 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.remed.R
-import com.example.remed.features.components.ReMedDivider
-import com.example.remed.features.components.ReminderCard
+import com.example.remed.features.presentation.components.ReminderCard
 import com.example.remed.navigation.Screens
 import com.example.remed.ui.theme.ReMedTheme
 
