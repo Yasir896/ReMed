@@ -18,10 +18,14 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import coil.annotation.ExperimentalCoilApi
 import com.example.remed.navigation.AppNavigation
 import com.example.remed.ui.theme.ReMedTheme
+import dagger.hilt.android.AndroidEntryPoint
 
 @ExperimentalMaterialApi
+@ExperimentalCoilApi
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,10 +57,11 @@ class MainActivity : ComponentActivity() {
         }
 }
 
+@ExperimentalCoilApi
 @Composable
 fun ThemeHandler(navController: NavHostController) {
     ReMedTheme {
-        Scaffold() {
+        Scaffold {
             Surface(
                 modifier = Modifier.fillMaxSize(),
                 color = MaterialTheme.colors.background

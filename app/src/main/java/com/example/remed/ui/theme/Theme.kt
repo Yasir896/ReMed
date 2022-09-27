@@ -21,7 +21,7 @@ private val DarkColorPalette = ReMedColors(
     uiBackground = Lighter,
     textPrimary = White,
     textSecondary = Grey,
-    error = Black
+    light = Black
 )*/
 
 @Composable

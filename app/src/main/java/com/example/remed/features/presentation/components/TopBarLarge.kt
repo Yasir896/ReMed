@@ -18,7 +18,7 @@ import com.example.remed.R
 import com.example.remed.ui.theme.ReMedTheme
 
 @Composable
-fun TopBarLarge(onClick: () -> Unit) {
+fun TopBarLarge(onClick: () -> Unit, remedMessage: String) {
     ImageContainerWithContent(
         modifier = Modifier
             .fillMaxWidth()
@@ -39,7 +39,7 @@ fun TopBarLarge(onClick: () -> Unit) {
                     style = MaterialTheme.typography.h6)
 
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text(text = "You have 3 ReMeds Today",
+                    Text(text = remedMessage,
                         color = ReMedTheme.colors.light,
                         style = MaterialTheme.typography.subtitle1)
                     Spacer(modifier = Modifier.weight(1f))

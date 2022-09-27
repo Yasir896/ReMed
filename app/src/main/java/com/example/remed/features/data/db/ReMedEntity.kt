@@ -7,12 +7,24 @@ import com.example.remed.features.domain.model.ReMed
 
 @Entity
 class ReMedEntity(
-    @PrimaryKey
-    val reMedId: Int,
+    @PrimaryKey(autoGenerate = true)
+    val reMedId: Int? = null,
     val title: String,
-    val description: String,
+    val instructions: String,
+    val startDate: String,
+    val endDate: String,
+    val time: String,
     val completed: Boolean,
     val snoozed: Boolean,
     ) {
-    fun toDomainModel() = ReMed(id = reMedId, title = title, description = description, completed = completed, snoozed = snoozed)
+    fun toDomainModel() = ReMed(
+        id = reMedId,
+        title = title,
+        instructions = instructions,
+        startDate = startDate,
+        endDate = endDate,
+        time = time,
+        completed = completed,
+        snoozed = snoozed)
+
 }

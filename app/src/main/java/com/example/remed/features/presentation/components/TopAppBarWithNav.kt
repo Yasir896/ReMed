@@ -37,7 +37,7 @@ fun TopAppBarWithNav(
         modifier= modifier.fillMaxWidth().zIndex(1f)) {
 
         //TopAppBar Content
-        Box(Modifier.height(40.dp)) {
+        Box(modifier.height(40.dp)) {
 
             //Navigation Icon
                 Row(titleIconModifier, verticalAlignment = Alignment.CenterVertically) {
@@ -88,7 +88,7 @@ fun TopAppBarWithNav(
                             enabled = true,
                         ) {
                             Icon(
-                                modifier = modifier.size(30.dp),
+                                modifier = modifier.size(20.dp),
                                 painter = painterResource(id = R.drawable.ic_settings),
                                 contentDescription = "Back",
                                 tint = ReMedTheme.colors.uiBackground,
@@ -106,7 +106,7 @@ fun TopAppBarWithNav(
 @Preview
 @Composable
 fun PreviewTopBarWithClose() {
-    ReMedTheme() {
+    ReMedTheme {
         TopAppBarWithNav( "Create a new ReMed",
             navigationClick = { },
             modifier = Modifier, onSettingsClick = { })

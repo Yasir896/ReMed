@@ -19,6 +19,7 @@ import com.example.remed.ui.theme.ReMedTheme
 @ExperimentalMaterialApi
 @Composable
 fun ReminderCard(title: String,
+                 description: String,
                  onClick: () -> Unit) {
     Card(modifier = Modifier
         .padding(12.dp)
@@ -33,7 +34,7 @@ fun ReminderCard(title: String,
                 CardHeader(title = title,
                     modifier = Modifier.padding(8.dp))
 
-                CardBody(text = "One capsule daily, One hour before meals, with one cup of water.",
+                CardBody(text = description,
                     modifier = Modifier.padding(8.dp))
 
                 CardFooter(modifier = Modifier.padding(8.dp)) }
@@ -174,7 +175,7 @@ fun SectionCard(section: SubSection, onClick: () -> Unit) {
 @Composable
 fun ReminderCardPreview() {
     ReMedTheme {
-        ReminderCard(title = "Nexium") {
+        ReminderCard(title = "Nexium", "") {
 
         }
     }

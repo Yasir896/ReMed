@@ -10,9 +10,6 @@ interface ReMedDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertReMed(remed: ReMedEntity)
 
-    @Query("SELECT * FROM ReMedEntity WHERE reMedId =:reMedId")
-    fun getReMedById(reMedId: Int): Flow<ReMedEntity?>
-
     @Query("SELECT * FROM ReMedEntity" )
     fun getAllReMeds(): Flow<List<ReMedEntity>>
 
