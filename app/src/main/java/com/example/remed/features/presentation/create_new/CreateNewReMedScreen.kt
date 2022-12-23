@@ -57,8 +57,8 @@ fun CreateNewReMedScreen(
         val (toolbar, body, button) = createRefs()
 
         TopAppBarWithNav( title = "Create new ReMed",
-            navigationClick = { navController.popBackStack(Screens.Home.title, false) },
-            onSettingsClick = {  },
+            navigationClick = { navController.popBackStack(Screens.Home.route, false) },
+            onSettingsClick = { navController.navigate(Screens.Settings.route) },
             showSettingsIcon = true,
             modifier = Modifier.constrainAs(toolbar) {
                 top.linkTo(parent.top)

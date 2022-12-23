@@ -12,8 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CreateNewReMedViewModel @Inject constructor(private val useCase: ReMedUseCase): ViewModel() {
-
-
+    
     fun newReMed(name: String, instructions: String, start: String, end: String, time: String) {
         if (TextUtils.isEmpty(name)) {
             Log.d("REMEDVIEWMODEL::", "Title can not be empty.")

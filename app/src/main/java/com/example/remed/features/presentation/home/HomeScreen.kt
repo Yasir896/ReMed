@@ -1,6 +1,5 @@
 package com.example.remed.features
 
-import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -44,7 +43,7 @@ fun HomeScreen(navController: NavController,
 
         Column(modifier = Modifier.fillMaxSize()) {
             TopBarLarge(onClick = {
-                Toast.makeText(context, "Go To Settings Clicked!", Toast.LENGTH_LONG).show()
+                navController.navigate(Screens.Settings.route)
             },
             remedMessage = when(state.remeds.isEmpty()) {
                 true -> "No ReMeds Today"
@@ -88,7 +87,7 @@ fun HomeScreen(navController: NavController,
 
         }
         BottomBarButton(modifier = Modifier.align(Alignment.BottomCenter),
-            onClickNew = { navController.navigate(Screens.CreateNew.title)}
+            onClickNew = { navController.navigate(Screens.CreateNew.route)}
         )
     }
 }
