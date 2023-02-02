@@ -115,8 +115,6 @@ fun CreateNewReMedScreen(
     }
 }
 
-
-
 @Composable
 fun TextFieldWithTitle(
     modifier: Modifier,
