@@ -8,6 +8,7 @@ import android.view.*
 import android.view.animation.AnticipateInterpolator
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -21,12 +22,14 @@ import androidx.navigation.compose.rememberNavController
 import coil.annotation.ExperimentalCoilApi
 import com.example.remed.navigation.AppNavigation
 import com.example.remed.ui.theme.ReMedTheme
+import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import dagger.hilt.android.AndroidEntryPoint
 
 @ExperimentalMaterialApi
 @ExperimentalCoilApi
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    @ExperimentalAnimationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -52,11 +55,12 @@ class MainActivity : ComponentActivity() {
     }
         WindowCompat.setDecorFitsSystemWindows(window, true)
         setContent {
-            val navController = rememberNavController()
+            val navController = rememberAnimatedNavController()
             ThemeHandler(navController)
         }
 }
 
+@ExperimentalAnimationApi
 @ExperimentalCoilApi
 @Composable
 fun ThemeHandler(navController: NavHostController) {
