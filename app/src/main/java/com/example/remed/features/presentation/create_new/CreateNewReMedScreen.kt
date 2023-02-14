@@ -36,20 +36,7 @@ fun CreateNewReMedScreen(
     navController: NavController,
     viewModel: CreateNewReMedViewModel = hiltViewModel()) {
 
-    var reMedName by remember { mutableStateOf("") }
-    var reMedInstrucions by remember { mutableStateOf("") }
 
-    val selectedTime = remember {
-        mutableStateOf("")
-    }
-
-    val startDate = remember {
-        mutableStateOf("")
-    }
-
-    val endDate = remember {
-        mutableStateOf("")
-    }
     ConstraintLayout(modifier = Modifier
         .padding(top = 16.dp)
         .fillMaxHeight()
@@ -76,21 +63,24 @@ fun CreateNewReMedScreen(
 
             TextFieldWithTitle(modifier = Modifier,
                 title = "Title",
-                text = reMedName,
+                text = viewModel.nameText.value,
                 trailingIcon = R.drawable.ic_edit,
-                onValueChange = { reMedName = it},
+                onValueChange = { viewModel.setNameText(it) },
                 onIconClick = { })
 
             Spacer(modifier = Modifier.height(16.dp))
             TextFieldWithTitle(modifier = Modifier,
                 title = "Instrucions",
-                text = reMedInstrucions,
+                text = viewModel.instructionsText.value,
                 trailingIcon = R.drawable.ic_edit,
-                onValueChange = { reMedInstrucions = it},
+                onValueChange = { viewModel.setInstructionsText(it) },
                 onIconClick = { })
 
             Spacer(modifier = Modifier.height(16.dp))
-            DateTimeSection(startDate, endDate, selectedTime)
+            DateTimeSection(
+                startDate = { viewModel.setStartDate(it) },
+                endDate = { viewModel.setEndDate(it) },
+                time = { } )
         }
         ReMedButton(
             modifier = Modifier
@@ -100,11 +90,11 @@ fun CreateNewReMedScreen(
                     bottom.linkTo(parent.bottom)
                 },
             onClick = {
-                      viewModel.newReMed(reMedName,
-                          reMedInstrucions,
+                      /*viewModel.newReMed(reMedName,
+                          reMedInstructions,
                           startDate.value,
                           endDate.value,
-                          selectedTime.value)
+                          selectedTime.value)*/
             },
             enabled = true) {
             Text("Create New",
@@ -153,11 +143,21 @@ fun TextFieldWithTitle(
 
 @Composable
 fun DateTimeSection(
-    startDate: MutableState<String>,
-    endDate: MutableState<String>,
-    time: MutableState<String>
+    startDate: (String) -> Unit,
+    endDate: (String) -> Unit,
+    time: (String) -> Unit,
 ) {
     val context = LocalContext.current
+
+    val time = remember {
+        mutableStateOf("")
+    }
+    val startDate = remember {
+        mutableStateOf("")
+    }
+    val endDate = remember {
+        mutableStateOf("")
+    }
 
     Column() {
         Row(verticalAlignment = Alignment.CenterVertically) {
