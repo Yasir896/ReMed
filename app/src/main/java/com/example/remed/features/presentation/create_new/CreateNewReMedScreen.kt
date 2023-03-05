@@ -28,6 +28,9 @@ import com.example.remed.features.presentation.components.StandardTextField
 import com.example.remed.features.presentation.components.TopAppBarWithNav
 import com.example.remed.navigation.Screens
 import com.example.remed.ui.theme.ReMedTheme
+import com.example.remed.ui.theme.SpaceLarge
+import com.example.remed.ui.theme.SpaceMedium
+import com.example.remed.ui.theme.SpaceSmall
 import java.util.*
 
 @ExperimentalCoilApi
@@ -38,7 +41,7 @@ fun CreateNewReMedScreen(
 
 
     ConstraintLayout(modifier = Modifier
-        .padding(top = 16.dp)
+        .padding(top = SpaceMedium)
         .fillMaxHeight()
         .background(ReMedTheme.colors.uiBackground)) {
         val (toolbar, body, button) = createRefs()
@@ -54,7 +57,7 @@ fun CreateNewReMedScreen(
             }
         )
         Column(modifier = Modifier
-            .padding(24.dp)
+            .padding(SpaceLarge)
             .fillMaxSize()
             .constrainAs(body) {
                 top.linkTo(toolbar.bottom)
@@ -68,7 +71,7 @@ fun CreateNewReMedScreen(
                 onValueChange = { viewModel.setNameText(it) },
                 onIconClick = { })
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(SpaceMedium))
             TextFieldWithTitle(modifier = Modifier,
                 title = "Instrucions",
                 text = viewModel.instructionsText.value,
@@ -76,7 +79,7 @@ fun CreateNewReMedScreen(
                 onValueChange = { viewModel.setInstructionsText(it) },
                 onIconClick = { })
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(SpaceMedium))
             DateTimeSection(
                 startDate = { viewModel.setStartDate(it) },
                 endDate = { viewModel.setEndDate(it) },
@@ -84,7 +87,7 @@ fun CreateNewReMedScreen(
         }
         ReMedButton(
             modifier = Modifier
-                .padding(8.dp)
+                .padding(SpaceSmall)
                 .fillMaxWidth()
                 .constrainAs(button) {
                     bottom.linkTo(parent.bottom)
@@ -98,7 +101,7 @@ fun CreateNewReMedScreen(
             },
             enabled = true) {
             Text("Create New",
-                modifier = Modifier.padding(vertical = 8.dp),
+                modifier = Modifier.padding(vertical = SpaceSmall),
                 color = ReMedTheme.colors.uiBackground,
                 style = MaterialTheme.typography.body2)
         }

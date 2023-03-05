@@ -120,11 +120,6 @@ private val localColorProvider = staticCompositionLocalOf<ReMedColors> {
     error("ReMedColorPalette not provided")
 }
 
-/**
- * A Material [Colors] implementation which sets all colors to [debugColor] to discourage usage of
- * [MaterialTheme.colors] in preference to [TerraVirtuaTheme.colors].
- */
-
 fun debugColors(
     darkTheme: Boolean,
     debugColor: ReMedColors
