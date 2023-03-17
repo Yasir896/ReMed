@@ -22,7 +22,9 @@ import com.example.remed.ui.theme.ReMedTheme
 
 @OptIn(ExperimentalCoilApi::class)
 @Composable
-fun OnBoardingScreen(navController: NavController) {
+fun OnBoardingScreen(
+    takeToHomeScreen: () -> Unit
+) {
 
     Column(Modifier.fillMaxSize()) {
 
@@ -34,9 +36,7 @@ fun OnBoardingScreen(navController: NavController) {
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        FloatingActionButton(onClick = {
-            navController.navigate(Screens.Home.route)
-        })
+        FloatingActionButton(onClick = takeToHomeScreen)
     }
 }
 

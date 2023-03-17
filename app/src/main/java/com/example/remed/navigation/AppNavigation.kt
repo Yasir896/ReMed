@@ -24,12 +24,17 @@ fun AppNavigation(navController: NavHostController) {
             composable(route = Screens.OnBoarding.route,
             enterTransition = { tabEnterTransition() },
             exitTransition = { tabExitTransition() }) {
-                OnBoardingScreen(navController = navController)
+                OnBoardingScreen {
+                    navController.navigate(Screens.Home.route)
+                }
             }
             composable(Screens.Home.route,
                 enterTransition = { tabEnterTransition() },
                 exitTransition = { tabExitTransition() }) {
-                HomeScreen(navController = navController)
+                HomeScreen(
+                    takeToAddNewScreen = { navController.navigate(Screens.CreateNew.route) },
+                    takeToSettingsScreen = { navController.navigate(Screens.Settings.route) }
+                )
             }
             composable(Screens.CreateNew.route,
                 enterTransition = { tabEnterTransition() },
@@ -52,5 +57,5 @@ private fun tabEnterTransition(
     duration: Int = 500, delay: Int = duration - 350
 ) = fadeIn(tween(duration, duration - delay))*/
 
-private fun tabExitTransition() = slideOutHorizontally(targetOffsetX = { 4000 })
-private fun tabEnterTransition() = slideInHorizontally( initialOffsetX = { 4000 })
+private fun tabExitTransition() = slideOutHorizontally(targetOffsetX = { 6000 })
+private fun tabEnterTransition() = slideInHorizontally( initialOffsetX = { 6000 })

@@ -27,9 +27,12 @@ import com.example.remed.ui.theme.ReMedTheme
 
 @ExperimentalMaterialApi
 @Composable
-fun HomeScreen(navController: NavController,
-               viewModel: HomeViewModel = hiltViewModel()) {
-    val context =  LocalContext.current
+fun HomeScreen(
+    takeToAddNewScreen: () -> Unit,
+    takeToSettingsScreen: () -> Unit,
+    viewModel: HomeViewModel = hiltViewModel()
+) {
+    val context = LocalContext.current
 
     LaunchedEffect(key1 = true) {
         viewModel.getAllReMeds()
@@ -37,18 +40,20 @@ fun HomeScreen(navController: NavController,
 
     val state = viewModel.state.value
 
-    Box(modifier = Modifier
-        .fillMaxSize()
-        .background(color = ReMedTheme.colors.uiBackground)) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = ReMedTheme.colors.uiBackground)
+    ) {
 
         Column(modifier = Modifier.fillMaxSize()) {
-            TopBarLarge(onClick = {
-                navController.navigate(Screens.Settings.route)
-            },
-            remedMessage = when(state.remeds.isEmpty()) {
-                true -> "No ReMeds Today"
-                else -> "You have ${state.remeds.size} ReMeds Today"
-            } )
+            TopBarLarge(
+                onClick = takeToSettingsScreen,
+                remedMessage = when (state.remeds.isEmpty()) {
+                    true -> "No ReMeds Today"
+                    else -> "You have ${state.remeds.size} ReMeds Today"
+                }
+            )
 
             if (state.remeds.isNotEmpty()) {
 
@@ -73,7 +78,8 @@ fun HomeScreen(navController: NavController,
             } else {
                 Box(Modifier.fillMaxSize()) {
                     Text(
-                        modifier = Modifier.padding(horizontal = 24.dp, vertical = 16.dp)
+                        modifier = Modifier
+                            .padding(horizontal = 24.dp, vertical = 16.dp)
                             .align(Alignment.Center),
                         color = ReMedTheme.colors.textPrimary,
                         text = "Nothing to show...",
@@ -87,15 +93,17 @@ fun HomeScreen(navController: NavController,
 
         }
         BottomBarButton(modifier = Modifier.align(Alignment.BottomCenter),
-            onClickNew = { navController.navigate(Screens.CreateNew.route)}
+            onClickNew = takeToAddNewScreen
         )
     }
 }
 
 @Composable
 fun BottomBarButton(modifier: Modifier, onClickNew: () -> Unit) {
-    ReMedSurface(modifier = modifier,
-    color = ReMedTheme.colors.light) {
+    ReMedSurface(
+        modifier = modifier,
+        color = ReMedTheme.colors.light
+    ) {
 
         Row(
             modifier = Modifier
@@ -103,7 +111,8 @@ fun BottomBarButton(modifier: Modifier, onClickNew: () -> Unit) {
                 .wrapContentHeight()
                 .padding(5.dp),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceEvenly) {
+            horizontalArrangement = Arrangement.SpaceEvenly
+        ) {
             androidx.compose.material.FloatingActionButton(
                 modifier = Modifier.defaultMinSize(minWidth = 45.dp, minHeight = 45.dp),
                 backgroundColor = ReMedTheme.colors.brand,

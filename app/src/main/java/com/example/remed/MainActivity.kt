@@ -12,6 +12,8 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.animation.doOnEnd
@@ -20,6 +22,7 @@ import androidx.core.view.WindowCompat
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import coil.annotation.ExperimentalCoilApi
+import com.example.remed.features.presentation.components.CustomDialog
 import com.example.remed.navigation.AppNavigation
 import com.example.remed.ui.theme.ReMedTheme
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
@@ -55,8 +58,18 @@ class MainActivity : ComponentActivity() {
     }
         WindowCompat.setDecorFitsSystemWindows(window, true)
         setContent {
+
+            val displayDialog = remember {
+                mutableStateOf(false)
+            }
+
             val navController = rememberAnimatedNavController()
             ThemeHandler(navController)
+
+            if (displayDialog.value)
+                CustomDialog(openCustomDialog = displayDialog){
+                    finish()
+                }
         }
 }
 
