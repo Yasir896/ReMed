@@ -39,7 +39,10 @@ fun AppNavigation(navController: NavHostController) {
             composable(Screens.CreateNew.route,
                 enterTransition = { tabEnterTransition() },
                 exitTransition = { tabExitTransition() }) {
-                CreateNewReMedScreen(navController = navController)
+                CreateNewReMedScreen(
+                    onNavigationClick = { navController.popBackStack()},
+                    onSettingsClick = { navController.navigate(Screens.Settings.route)}
+                )
             }
             composable(Screens.Settings.route,
                 enterTransition = { tabEnterTransition() },

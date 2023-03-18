@@ -36,7 +36,8 @@ import java.util.*
 @ExperimentalCoilApi
 @Composable
 fun CreateNewReMedScreen(
-    navController: NavController,
+    onNavigationClick: () -> Unit,
+    onSettingsClick: () -> Unit,
     viewModel: CreateNewReMedViewModel = hiltViewModel()) {
 
 
@@ -47,8 +48,8 @@ fun CreateNewReMedScreen(
         val (toolbar, body, button) = createRefs()
 
         TopAppBarWithNav( title = "Create new ReMed",
-            navigationClick = { navController.popBackStack(Screens.Home.route, false) },
-            onSettingsClick = { navController.navigate(Screens.Settings.route) },
+            navigationClick = onNavigationClick,
+            onSettingsClick = onSettingsClick,
             showSettingsIcon = true,
             modifier = Modifier.constrainAs(toolbar) {
                 top.linkTo(parent.top)
