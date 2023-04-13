@@ -12,5 +12,5 @@ Hilt used for DI
 ## UI
 Built with Jetpack Compose.
 
-## Language
+### Language
 Written using Kotlin
