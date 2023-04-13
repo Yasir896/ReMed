@@ -1,15 +1,15 @@
 # ReMed
 
-## What is Happening
+### What is Happening
 This Application is a Reminder for daily Medication intake.
 
-## Architecture
+### Architecture
 Built with MVVM clean code.
 
-## Dependency Injection
+### Dependency Injection
 Hilt used for DI
 
-## UI
+### UI
 Built with Jetpack Compose.
 
 ### Language
