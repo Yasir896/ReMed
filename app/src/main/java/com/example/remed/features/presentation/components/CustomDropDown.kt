@@ -7,9 +7,6 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowDropDown
-import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -20,7 +17,7 @@ import androidx.compose.ui.window.Dialog
 
 
 @Composable
-fun <T> CustomDropDown(
+fun <T> ReMedDropDown(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     label: String,
@@ -47,7 +44,7 @@ fun <T> CustomDropDown(
             enabled = enabled,
             modifier = Modifier.fillMaxWidth(),
             trailingIcon = {
-/*                val icon = expanded.select(Icons.Filled.KeyboardArrowUp, Icons.Filled.ArrowDropDown)
+                /*val icon = expanded.select(Icons.Filled.KeyboardArrowUp, Icons.Filled.ArrowDropDown)
                 Icon(icon, "")*/
             },
             onValueChange = { },
@@ -144,7 +141,7 @@ fun DropdownMenuItem(
 fun PreviewDropDown() {
     MaterialTheme() {
         var selectedIndex by remember { mutableStateOf(-1) }
-        CustomDropDown(
+        ReMedDropDown(
             label = "Sample",
             items = listOf("Item 1", "Item 2", "Item 3"),
             selectedIndex = selectedIndex,
