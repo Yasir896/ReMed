@@ -14,3 +14,7 @@ Built with Jetpack Compose.
 
 ### Language
 Written using Kotlin
+
+## Important Note
+- New Splash Screen 12 API is added 
+- Jetpack compose navigation added
