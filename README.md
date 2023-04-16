@@ -3,17 +3,22 @@
 ### What is Happening
 This Application is a Reminder for daily Medication intake.
 
+### Features
+- View reminders
+- add new reminders
+
+
 ### Architecture
-- Built with MVVM clean code.
+Built with MVVM clean code.
 
 ### Dependency Injection
-- Hilt used for DI
+Hilt used for DI
 
 ### UI
-- Built with Jetpack Compose.
+Built with Jetpack Compose.
 
 ### Language
-- Written using Kotlin
+Written using Kotlin
 
 ## Important Note
 - New Splash Screen 12 API is added 
