@@ -1,7 +1,7 @@
 # ReMed
 
 ### What is Happening
-This Application is a Reminder for daily Medication intake.
+This Application is a Reminder for daily Medication intake. User can Create and Eidt Reminder.
 
 ### Features
 - View reminders
@@ -23,3 +23,5 @@ Written using Kotlin
 ## Important Note
 - New Splash Screen 12 API is added 
 - Jetpack compose navigation added
+
+##Offline Storage
