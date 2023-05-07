@@ -14,6 +14,10 @@ Built with MVVM clean code.
 ### Dependency Injection
 Hilt used for DI
 
+### Usecases
+- Fetching Reminders
+- Add New Reminder
+
 ### UI
 Built with Jetpack Compose.
 
