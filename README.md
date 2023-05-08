@@ -1,7 +1,7 @@
 # ReMed
 
 ### What is Happening
-This Application is a Reminder for daily Medication intake.
+This Application is a Reminder for daily Medication intake. User can Create and Eidt Reminder.
 
 ### Features
 - View reminders
@@ -13,6 +13,10 @@ Built with MVVM clean code.
 
 ### Dependency Injection
 Hilt used for DI
+
+### Usecases
+- Fetching Reminders
+- Add New Reminder
 
 ### UI
 Built with Jetpack Compose.
