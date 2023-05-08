@@ -1,6 +1,8 @@
 package com.example.remed
 
 import android.animation.ObjectAnimator
+import android.app.AlarmManager
+import android.app.PendingIntent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
