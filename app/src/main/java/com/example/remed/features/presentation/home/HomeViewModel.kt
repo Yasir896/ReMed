@@ -15,9 +15,6 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(private val useCase: ReMedUseCase) : ViewModel() {
 
-    private val _reMedsList = MutableStateFlow<List<ReMed>>(listOf())
-    val reMedList: StateFlow<List<ReMed>> = _reMedsList
-
     private val _state = mutableStateOf(ReMedState())
     val state: State<ReMedState> = _state
 
