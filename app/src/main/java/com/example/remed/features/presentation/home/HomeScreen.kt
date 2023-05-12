@@ -72,7 +72,6 @@ fun HomeScreen(
                             title = reMed.title,
                             description = reMed.instructions,
                             onClick = { })
-
                     }
                 }
             } else {
@@ -88,9 +87,7 @@ fun HomeScreen(
                         textAlign = TextAlign.Left
                     )
                 }
-
             }
-
         }
         BottomBarButton(modifier = Modifier.align(Alignment.BottomCenter),
             onClickNew = takeToAddNewScreen

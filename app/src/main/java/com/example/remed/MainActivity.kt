@@ -90,8 +90,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    //AppNavigation(navController = navController)
-                    AlarmTestScreen()
+                    AppNavigation(navController = navController)
+                    //AlarmTestScreen()
                 }
             }
         }

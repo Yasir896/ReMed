@@ -45,7 +45,7 @@ fun AlarmTestScreen() {
         },
             label = {
                 Text(text = "Message")
-            }
+            },
         )
         Spacer(modifier = Modifier.height(8.dp))
         Row(
@@ -57,12 +57,14 @@ fun AlarmTestScreen() {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     alarmTime = Alarm(
                         alarmTime = LocalDateTime.now().plusSeconds(
-                            secondText?.toLong()
+                            secondText.toLong()
                         ),
                         message = messageText
                     )
                 }
-                alarmTime?.let { alarmScheduler::schedule }
+                alarmTime?.let {
+                    alarmScheduler.schedule(it)
+                }
                 secondText = ""
                 messageText = ""
 
