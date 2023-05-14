@@ -11,8 +11,6 @@ import com.example.remed.ui.theme.ReMedTheme
 
 @Composable
 fun StandardTextField(
-
-
     modifier: Modifier,
     text: String = "",
     keyboardType: KeyboardType = KeyboardType.Text,

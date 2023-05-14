@@ -20,13 +20,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
 import coil.annotation.ExperimentalCoilApi
 import com.example.remed.R
 import com.example.remed.features.ReMedButton
 import com.example.remed.features.presentation.components.StandardTextField
 import com.example.remed.features.presentation.components.TopAppBarWithNav
-import com.example.remed.navigation.Screens
 import com.example.remed.ui.theme.ReMedTheme
 import com.example.remed.ui.theme.SpaceLarge
 import com.example.remed.ui.theme.SpaceMedium
@@ -82,9 +80,12 @@ fun CreateNewReMedScreen(
 
             Spacer(modifier = Modifier.height(SpaceMedium))
             DateTimeSection(
-                startDate = { viewModel.setStartDate(it) },
-                endDate = { viewModel.setEndDate(it) },
-                time = { } )
+                startTimeText = viewModel.startDate.value,
+                endDateText = viewModel.endDate.value,
+                timeText = viewModel.time.value,
+                setStartDate = {viewModel.setStartDate(it)},
+                setEndDate = { viewModel.setEndDate(it) },
+                setTime = { viewModel.setTime(it) })
         }
         ReMedButton(
             modifier = Modifier
@@ -94,11 +95,7 @@ fun CreateNewReMedScreen(
                     bottom.linkTo(parent.bottom)
                 },
             onClick = {
-                      /*viewModel.newReMed(reMedName,
-                          reMedInstructions,
-                          startDate.value,
-                          endDate.value,
-                          selectedTime.value)*/
+                      viewModel.newReMed()
             },
             enabled = true) {
             Text("Create New",
@@ -147,31 +144,24 @@ fun TextFieldWithTitle(
 
 @Composable
 fun DateTimeSection(
-    startDate: (String) -> Unit,
-    endDate: (String) -> Unit,
-    time: (String) -> Unit,
+    startTimeText: String,
+    endDateText: String,
+    timeText: String,
+    setStartDate: (String) -> Unit,
+    setEndDate: (String) -> Unit,
+    setTime: (String) -> Unit,
 ) {
     val context = LocalContext.current
 
-    val time = remember {
-        mutableStateOf("")
-    }
-    val startDate = remember {
-        mutableStateOf("")
-    }
-    val endDate = remember {
-        mutableStateOf("")
-    }
-
-    Column() {
+    Column {
         Row(verticalAlignment = Alignment.CenterVertically) {
             TextFieldWithTitle(
                 modifier = Modifier.weight(.7f),
                 title = "Start Date",
-                text = startDate.value,
+                text = startTimeText,
                 trailingIcon = R.drawable.ic_calander,
-                onValueChange = { },
-                onIconClick = { showDatePicker({ startDate.value = it }, context) })
+                onValueChange = {},
+                onIconClick = { showDatePicker({ setStartDate(it) }, context) })
             Spacer(modifier = Modifier.weight(.3f))
         }
 
@@ -181,10 +171,10 @@ fun DateTimeSection(
             TextFieldWithTitle(
                 modifier = Modifier.weight(.7f),
                 title = "End Date",
-                text = endDate.value,
+                text = endDateText,
                 trailingIcon = R.drawable.ic_calander,
-                onValueChange = { },
-                onIconClick = { showDatePicker({ endDate.value = it }, context) })
+                onValueChange = {},
+                onIconClick = { showDatePicker({ setEndDate(it) }, context) })
             Spacer(modifier = Modifier.weight(.3f))
         }
 
@@ -194,10 +184,10 @@ fun DateTimeSection(
             TextFieldWithTitle(
                 modifier = Modifier.weight(.7f),
                 title = "Set Time",
-                text = time.value,
+                text = timeText,
                 trailingIcon = R.drawable.ic_clock,
-                onValueChange = { },
-                onIconClick = { showPicker( { time.value = it },context) })
+                onValueChange = {},
+                onIconClick = { showPicker( { setTime(it) },context) })
             Spacer(modifier = Modifier.weight(.3f))
         }
     }

@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
@@ -18,6 +19,7 @@ import com.example.remed.features.presentation.components.TopAppBarWithNav
 import com.example.remed.navigation.Screens
 import com.example.remed.ui.theme.ReMedTheme
 import com.example.remed.ui.theme.SpaceMedium
+import java.time.format.TextStyle
 
 @ExperimentalCoilApi
 @Composable
@@ -54,6 +56,7 @@ fun Settings(
                 text = "Defaults",
                 fontWeight = FontWeight.Medium,
                 fontSize = 16.sp,
+                textDecoration = TextDecoration.Underline,
                 textAlign = TextAlign.Left
             )
         }

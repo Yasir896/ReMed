@@ -47,7 +47,9 @@ class CreateNewReMedViewModel @Inject constructor(private val useCase: ReMedUseC
         _endDate.value = end
     }
 
-
+    fun setTime(time: String) {
+        _time.value = time
+    }
     fun newReMed() {
         if (TextUtils.isEmpty(nameText.value)) {
             Log.d("REMEDVIEWMODEL::", "Title can not be empty.")
