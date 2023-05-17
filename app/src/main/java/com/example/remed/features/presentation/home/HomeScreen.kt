@@ -9,6 +9,7 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -18,11 +19,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
 import com.example.remed.R
 import com.example.remed.features.presentation.components.ReminderCard
 import com.example.remed.features.presentation.home.HomeViewModel
-import com.example.remed.navigation.Screens
+import com.example.remed.features.presentation.home.ReMedState
 import com.example.remed.ui.theme.ReMedTheme
 
 @ExperimentalMaterialApi
@@ -32,14 +32,27 @@ fun HomeScreen(
     takeToSettingsScreen: () -> Unit,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
-    val context = LocalContext.current
-
     LaunchedEffect(key1 = true) {
         viewModel.getAllReMeds()
     }
 
-    val state = viewModel.state.value
+    val state = remember {viewModel.state.value }
+    HomeScreenContent(
+        state,
+        takeToAddNewScreen = { takeToAddNewScreen.invoke() },
+        takeToSettingsScreen = { takeToSettingsScreen.invoke()},
 
+    )
+
+}
+
+@ExperimentalMaterialApi
+@Composable
+fun HomeScreenContent(
+    state: ReMedState,
+    takeToAddNewScreen: () -> Unit,
+    takeToSettingsScreen: () -> Unit,
+    ) {
     Box(
         modifier = Modifier
             .fillMaxSize()
