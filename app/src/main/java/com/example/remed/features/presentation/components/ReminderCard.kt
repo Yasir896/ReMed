@@ -10,16 +10,20 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.remed.R
+import com.example.remed.features.ReMedButton
 import com.example.remed.ui.theme.ReMedTheme
+import com.example.remed.ui.theme.SpaceSmall
 
 
 @ExperimentalMaterialApi
 @Composable
 fun ReminderCard(title: String,
                  description: String,
+                 isCurrentReminder: Boolean = false,
                  onClick: () -> Unit) {
     Card(modifier = Modifier
         .padding(12.dp)
@@ -37,7 +41,13 @@ fun ReminderCard(title: String,
                 CardBody(text = description,
                     modifier = Modifier.padding(8.dp))
 
-                CardFooter(modifier = Modifier.padding(8.dp)) }
+                CardFooter(modifier = Modifier.padding(8.dp))
+
+                if (isCurrentReminder) {
+                    RowButtons(Modifier.fillMaxWidth())
+                }
+            }
+
     }
 }
 
@@ -127,76 +137,44 @@ fun DateWithImage(time: String,
 }
 
 
-@ExperimentalMaterialApi
 @Composable
-fun SectionCard(section: SubSection, onClick: () -> Unit) {
-    Card(
-        modifier = Modifier
-            .padding(12.dp)
-            .fillMaxWidth()
-            .wrapContentHeight()
-            .testTag(section.title),
-        shape = MaterialTheme.shapes.large,
-        elevation = 5.dp,
-        backgroundColor = MaterialTheme.colors.surface,
-        onClick = onClick
-    ) {
-        Row(
-            modifier = Modifier.padding(8.dp),
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.ic_launcher_background),
-                contentDescription = null,
-                colorFilter = ColorFilter.tint(MaterialTheme.colors.onSurface),
-                modifier = Modifier
-                    .size(84.dp)
-                    .padding(8.dp),
-                contentScale = ContentScale.Fit,
-            )
-            Column(Modifier.padding(8.dp)) {
-                Text(
-                    text = section.title,
-                    style = MaterialTheme.typography.h6,
-                    color = ReMedTheme.colors.textPrimary,
-                )
-                Text(
-                    text = section.title,
-                    style = MaterialTheme.typography.caption,
-                )
-            }
+fun RowButtons(modifier: Modifier) {
+    Row(modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceEvenly) {
+
+        ReMedButton(
+            modifier = Modifier.weight(1f)
+                .padding(SpaceSmall),
+            onClick = { },
+            enabled = true) {
+            Text("Snooze",
+                modifier = Modifier.padding(vertical = SpaceSmall),
+                color = ReMedTheme.colors.uiBackground,
+                style = MaterialTheme.typography.body2)
+        }
+
+        ReMedButton(
+            modifier = Modifier.weight(1f)
+                .padding(SpaceSmall),
+            onClick = { },
+            enabled = true) {
+            Text("Done",
+                modifier = Modifier.padding(vertical = SpaceSmall),
+                color = ReMedTheme.colors.uiBackground,
+                style = MaterialTheme.typography.body2)
         }
     }
 }
-
 
 @ExperimentalMaterialApi
 @Preview
 @Composable
 fun ReminderCardPreview() {
     ReMedTheme {
-        ReminderCard(title = "Nexium", "") {
+        ReminderCard(title = "Nexium", "", isCurrentReminder = true) {
 
         }
     }
 }
 
-/*@ExperimentalMaterialApi
-@Preview
-@Composable
-fun SectionCardPreview() {
-
-    ReminderCard(title = "Nexium") {
-        
-    }
-    
-    
-}*/
-
-
-
-data class SubSection (
-    val id: String,
-    val title: String,
-    val href: String
-)

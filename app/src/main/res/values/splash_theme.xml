@@ -3,6 +3,6 @@
         <style name="Theme.App.Starting" parent="Theme.SplashScreen">
             <item name="windowSplashScreenAnimatedIcon">@drawable/capsule_granules</item>
             <item name="postSplashScreenTheme">@style/Theme.ReMed</item>
-            <item name="android:windowTranslucentStatus">true</item>
+            <item name="android:statusBarColor">@color/teal_200</item>
         </style>
 </resources>

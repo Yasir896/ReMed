@@ -18,7 +18,10 @@ class HomeViewModel @Inject constructor(private val useCase: ReMedUseCase) : Vie
     private val _state = mutableStateOf(ReMedState())
     val state: State<ReMedState> = _state
 
-    fun getAllReMeds() {
+    init {
+        getAllReMeds()
+    }
+    private fun getAllReMeds() {
         viewModelScope.launch {
             useCase.getReMedUseCases().collect() { remeds ->
                 _state.value = state.value.copy(

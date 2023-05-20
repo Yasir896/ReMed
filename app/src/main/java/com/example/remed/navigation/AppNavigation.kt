@@ -47,7 +47,7 @@ fun AppNavigation(navController: NavHostController) {
             composable(Screens.Settings.route,
                 enterTransition = { tabEnterTransition() },
                 exitTransition = { tabExitTransition() }) {
-                Settings(navController = navController)
+                Settings { navController.popBackStack(Screens.Home.route, false) }
             }
         }
 }

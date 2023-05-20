@@ -3,6 +3,7 @@ package com.example.remed.features.presentation.settings
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -28,52 +29,9 @@ import java.time.format.TextStyle
 @ExperimentalCoilApi
 @Composable
 fun Settings(
-    navController: NavController,
+    onNavClick: () -> Unit
 ) {
-    ConstraintLayout(
-        modifier = Modifier
-            .padding(top = SpaceMedium)
-            .fillMaxHeight()
-            .background(ReMedTheme.colors.uiBackground)
-    ) {
-        val (toolbar, body) = createRefs()
-
-        TopAppBarWithNav(title = "Settings",
-            navigationClick = { navController.popBackStack(Screens.Home.route, false) },
-            onSettingsClick = { },
-            showSettingsIcon = false,
-            modifier = Modifier.constrainAs(toolbar) {
-                top.linkTo(parent.top)
-                bottom.linkTo(body.top)
-
-            }
-        )
-
-        Column(modifier = Modifier.fillMaxSize().padding(SpaceMedium)
-            .constrainAs(body) {
-                top.linkTo(toolbar.bottom)
-                bottom.linkTo(parent.bottom)
-            }) {
-            Text(
-                modifier = Modifier.padding(horizontal = 24.dp, vertical = 16.dp),
-                color = ReMedTheme.colors.textPrimary,
-                text = "Defaults",
-                fontWeight = FontWeight.Medium,
-                fontSize = 16.sp,
-                textDecoration = TextDecoration.Underline,
-                textAlign = TextAlign.Left
-            )
-
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Spacer(modifier = Modifier.weight(.3f))
-                TextFieldWithTitle(
-                    modifier = Modifier.weight(.7f),
-                    title = "User Name",
-                    text = "",
-                    trailingIcon = R.drawable.ic_calander,
-                    onValueChange = {},
-                    onIconClick = { })
-            }
-        }
+    SettingsScreenContent {
+        onNavClick.invoke()
     }
 }

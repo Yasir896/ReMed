@@ -32,16 +32,12 @@ fun HomeScreen(
     takeToSettingsScreen: () -> Unit,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
-    LaunchedEffect(key1 = true) {
-        viewModel.getAllReMeds()
-    }
 
-    val state = remember {viewModel.state.value }
+    val state = viewModel.state.value
     HomeScreenContent(
         state,
         takeToAddNewScreen = { takeToAddNewScreen.invoke() },
         takeToSettingsScreen = { takeToSettingsScreen.invoke()},
-
     )
 
 }
@@ -84,6 +80,7 @@ fun HomeScreenContent(
                         ReminderCard(
                             title = reMed.title,
                             description = reMed.instructions,
+                            isCurrentReminder = true,
                             onClick = { })
                     }
                 }
