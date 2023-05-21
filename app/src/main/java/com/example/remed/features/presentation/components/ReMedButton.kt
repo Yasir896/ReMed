@@ -51,6 +51,7 @@ fun ReMedButton(
                 interactionSource = interactionSource,
                 indication = null
             )
+            .indication(interactionSource, rememberRipple())
     ) {
         ProvideTextStyle(value = MaterialTheme.typography.button) {
             Row(
@@ -59,7 +60,6 @@ fun ReMedButton(
                         minWidth = ButtonDefaults.MinWidth,
                         minHeight = ButtonDefaults.MinHeight
                     )
-                    .indication(interactionSource, rememberRipple())
                     .padding(contentPadding),
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically,
@@ -72,7 +72,7 @@ fun ReMedButton(
 @Preview
 @Composable
 private fun ButtonPreview() {
-    ReMedTheme() {
+    ReMedTheme {
         ReMedButton(onClick = {}, enabled = false) {
             Text("Create New",
                 color = ReMedTheme.colors.uiBackground,
