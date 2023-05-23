@@ -1,6 +1,7 @@
 package com.example.remed.features.presentation.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -36,7 +37,7 @@ fun ReminderCard(title: String,
             Column(modifier = Modifier.padding(8.dp)) {
 
                 CardHeader(title = title,
-                    modifier = Modifier.padding(8.dp))
+                    modifier = Modifier.padding(8.dp), onEditClick = { }, onShareClick = { })
 
                 CardBody(text = description,
                     modifier = Modifier.padding(8.dp))
@@ -54,6 +55,8 @@ fun ReminderCard(title: String,
 
 @Composable
 fun CardHeader(title: String,
+               onShareClick: () -> Unit,
+               onEditClick: () -> Unit,
                modifier: Modifier) {
     Row(
         modifier = modifier ,
@@ -71,20 +74,23 @@ fun CardHeader(title: String,
             painter = painterResource(id = R.drawable.ic_send),
             contentDescription = null,
             colorFilter = ColorFilter.tint(ReMedTheme.colors.textPrimary),
+            contentScale = ContentScale.Fit,
             modifier = Modifier
                 .size(35.dp)
-                .padding(8.dp),
-            contentScale = ContentScale.Fit,
+                .padding(8.dp)
+                .clickable { onShareClick.invoke() },
+
         )
 
         Image(
             painter = painterResource(id = R.drawable.ic_edit),
             contentDescription = null,
             colorFilter = ColorFilter.tint(ReMedTheme.colors.textPrimary),
+            contentScale = ContentScale.Fit,
             modifier = Modifier
                 .size(35.dp)
-                .padding(8.dp),
-            contentScale = ContentScale.Fit,
+                .padding(8.dp)
+                .clickable { onEditClick.invoke() },
         )
     }
 }

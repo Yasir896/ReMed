@@ -54,10 +54,7 @@ fun TopBarLarge(onClick: () -> Unit, remedMessage: String) {
                         contentScale = ContentScale.Fit,
                     )
                 }
-
             }
-
-
         }
     }
 }

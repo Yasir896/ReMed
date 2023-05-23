@@ -173,14 +173,14 @@ fun DateTimeSection(
                 text = timeText,
                 trailingIcon = R.drawable.ic_clock,
                 onValueChange = {},
-                onIconClick = { showPicker( { setTime(it) },context) })
+                onIconClick = { showTimePicker( { setTime(it) },context) })
             Spacer(modifier = Modifier.weight(.3f))
         }
     }
 }
 
 
-fun showPicker(time: (String) -> Unit, context: Context) {
+fun showTimePicker(time: (String) -> Unit, context: Context) {
 
     val calender = Calendar.getInstance()
     val hour = calender[Calendar.HOUR_OF_DAY]
@@ -194,7 +194,6 @@ fun showPicker(time: (String) -> Unit, context: Context) {
         hour,
         minutes,
         false)
-
     timePickerDialog.show()
 }
 
@@ -216,6 +215,5 @@ fun showDatePicker(date: (String) -> Unit, context: Context) {
         month,
         day
     )
-
     datePicker.show()
 }
