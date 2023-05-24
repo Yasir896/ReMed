@@ -35,7 +35,6 @@ fun HomeScreen(
 
     val state = viewModel.state.value
     HomeScreenContent(
-        viewModel,
         state,
         takeToAddNewScreen = { takeToAddNewScreen.invoke() },
         takeToSettingsScreen = { takeToSettingsScreen.invoke() },
@@ -43,11 +42,9 @@ fun HomeScreen(
 
 }
 
-//@RequiresApi(Build.VERSION_CODES.O)
 @ExperimentalMaterialApi
 @Composable
 fun HomeScreenContent(
-    viewModel: HomeViewModel,
     state: ReMedState,
     takeToAddNewScreen: () -> Unit,
     takeToSettingsScreen: () -> Unit,
@@ -66,7 +63,6 @@ fun HomeScreenContent(
         bottomBar = {
             BottomBarButton(modifier = Modifier, onClickNew = takeToAddNewScreen)
         }
-
     ) {
         if (state.remeds.isNotEmpty()) {
             LazyColumn(modifier = Modifier.fillMaxSize()) {
