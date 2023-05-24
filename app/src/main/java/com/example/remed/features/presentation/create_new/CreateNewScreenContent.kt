@@ -200,9 +200,9 @@ fun showTimePicker(time: (String) -> Unit, context: Context) {
 fun showDatePicker(date: (String) -> Unit, context: Context) {
 
     val calendar = Calendar.getInstance()
-    val year = calendar.get(Calendar.YEAR)
-    val month = calendar.get(Calendar.MONTH)
-    val day = calendar.get(Calendar.DAY_OF_MONTH)
+    val year = calendar[Calendar.DAY_OF_MONTH]
+    val month = calendar[Calendar.MONTH]
+    val day = calendar[Calendar.DAY_OF_MONTH]
 
     calendar.time = Date()
 
@@ -212,7 +212,7 @@ fun showDatePicker(date: (String) -> Unit, context: Context) {
             date("$mDay/$mMonth/$mYear")
         },
         year,
-        month,
+        month + 1,
         day
     )
     datePicker.show()

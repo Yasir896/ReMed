@@ -1,18 +1,17 @@
 package com.example.remed.features
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -25,6 +24,7 @@ import com.example.remed.features.presentation.home.HomeViewModel
 import com.example.remed.features.presentation.home.ReMedState
 import com.example.remed.ui.theme.ReMedTheme
 
+
 @ExperimentalMaterialApi
 @Composable
 fun HomeScreen(
@@ -35,27 +35,26 @@ fun HomeScreen(
 
     val state = viewModel.state.value
     HomeScreenContent(
+        viewModel,
         state,
         takeToAddNewScreen = { takeToAddNewScreen.invoke() },
-        takeToSettingsScreen = { takeToSettingsScreen.invoke()},
+        takeToSettingsScreen = { takeToSettingsScreen.invoke() },
     )
 
 }
 
+//@RequiresApi(Build.VERSION_CODES.O)
 @ExperimentalMaterialApi
 @Composable
 fun HomeScreenContent(
+    viewModel: HomeViewModel,
     state: ReMedState,
     takeToAddNewScreen: () -> Unit,
     takeToSettingsScreen: () -> Unit,
-    ) {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(color = ReMedTheme.colors.uiBackground)
-    ) {
+) {
 
-        Column(modifier = Modifier.fillMaxSize()) {
+    Scaffold(
+        topBar = {
             TopBarLarge(
                 onClick = takeToSettingsScreen,
                 remedMessage = when (state.remeds.isEmpty()) {
@@ -63,45 +62,62 @@ fun HomeScreenContent(
                     else -> "You have ${state.remeds.size} ReMeds Today"
                 }
             )
+        },
+        bottomBar = {
+            BottomBarButton(modifier = Modifier, onClickNew = takeToAddNewScreen)
+        }
 
-            if (state.remeds.isNotEmpty()) {
-
-                Text(
-                    modifier = Modifier.padding(horizontal = 24.dp, vertical = 16.dp),
-                    color = ReMedTheme.colors.textPrimary,
-                    text = "Current ReMed",
-                    fontWeight = FontWeight.Medium,
-                    fontSize = 16.sp,
-                    textAlign = TextAlign.Left
-                )
-
-                LazyColumn(modifier = Modifier.fillMaxSize()) {
-                    items(state.remeds) { reMed ->
-                        ReminderCard(
-                            title = reMed.title,
-                            description = reMed.instructions,
-                            isCurrentReminder = true,
-                            onClick = { })
-                    }
-                }
-            } else {
-                Box(Modifier.fillMaxSize()) {
+    ) {
+        if (state.remeds.isNotEmpty()) {
+            LazyColumn(modifier = Modifier.fillMaxSize()) {
+                item {
                     Text(
-                        modifier = Modifier
-                            .padding(horizontal = 24.dp, vertical = 16.dp)
-                            .align(Alignment.Center),
+                        modifier = Modifier.padding(horizontal = 24.dp, vertical = 16.dp),
                         color = ReMedTheme.colors.textPrimary,
-                        text = "Nothing to show...",
+                        text = "Current ReMed",
                         fontWeight = FontWeight.Medium,
                         fontSize = 16.sp,
                         textAlign = TextAlign.Left
                     )
                 }
+                state.currentRemed?.let { current ->
+                    item {
+                        ReminderCard(
+                            reminder = current,
+                            isCurrentReminder = true)
+                    }
+                }
+                item {
+                    Text(
+                        modifier = Modifier.padding(horizontal = 24.dp, vertical = 16.dp),
+                        color = ReMedTheme.colors.textPrimary,
+                        text = "Upcoming ReMeds",
+                        fontWeight = FontWeight.Medium,
+                        fontSize = 16.sp,
+                        textAlign = TextAlign.Left
+                    )
+                }
+                items(state.remeds) { reMed ->
+                    ReminderCard(
+                        reminder = reMed,
+                        isCurrentReminder = false
+                    )
+                }
+            }
+        } else {
+            Box(Modifier.fillMaxSize()) {
+                Text(
+                    modifier = Modifier
+                        .padding(horizontal = 24.dp, vertical = 16.dp)
+                        .align(Alignment.Center),
+                    color = ReMedTheme.colors.textPrimary,
+                    text = "Nothing to show...",
+                    fontWeight = FontWeight.Medium,
+                    fontSize = 16.sp,
+                    textAlign = TextAlign.Left
+                )
             }
         }
-        BottomBarButton(modifier = Modifier.align(Alignment.BottomCenter),
-            onClickNew = takeToAddNewScreen
-        )
     }
 }
 
