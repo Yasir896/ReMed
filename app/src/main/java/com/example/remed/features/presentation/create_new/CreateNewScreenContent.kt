@@ -91,7 +91,6 @@ fun CreateNewScreenContent(
     }
 }
 
-
 @Composable
 fun TextFieldWithTitle(
     modifier: Modifier,
@@ -179,12 +178,12 @@ fun DateTimeSection(
     }
 }
 
-
 fun showTimePicker(time: (String) -> Unit, context: Context) {
 
     val calender = Calendar.getInstance()
     val hour = calender[Calendar.HOUR_OF_DAY]
     val minutes = calender[Calendar.MINUTE]
+    val seconds = calender[Calendar.SECOND]
 
     val timePickerDialog = TimePickerDialog(
         context,
@@ -193,26 +192,26 @@ fun showTimePicker(time: (String) -> Unit, context: Context) {
         },
         hour,
         minutes,
-        false)
+        true)
     timePickerDialog.show()
 }
 
 fun showDatePicker(date: (String) -> Unit, context: Context) {
 
     val calendar = Calendar.getInstance()
-    val year = calendar[Calendar.DAY_OF_MONTH]
-    val month = calendar[Calendar.MONTH]
-    val day = calendar[Calendar.DAY_OF_MONTH]
+    val year = calendar.get(Calendar.YEAR)
+    val month = calendar.get(Calendar.MONTH)
+    val day = calendar.get(Calendar.DAY_OF_MONTH)
 
     calendar.time = Date()
 
     val datePicker = DatePickerDialog(
         context,
         { _: DatePicker, mYear, mMonth, mDay ->
-            date("$mDay/$mMonth/$mYear")
+            date("$mDay/${mMonth + 1}/$mYear")
         },
         year,
-        month + 1,
+        month,
         day
     )
     datePicker.show()

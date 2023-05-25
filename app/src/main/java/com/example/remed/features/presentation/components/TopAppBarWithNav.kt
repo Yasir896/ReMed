@@ -102,7 +102,7 @@ fun TopAppBarWithNav(
     }
 }
 
-@ExperimentalCoilApi
+/*@ExperimentalCoilApi
 @Preview
 @Composable
 fun PreviewTopBarWithClose() {
@@ -111,4 +111,4 @@ fun PreviewTopBarWithClose() {
             navigationClick = { },
             modifier = Modifier, onSettingsClick = { })
     }
-}
+}*/

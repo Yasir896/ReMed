@@ -82,15 +82,3 @@ fun InfoText(title: String, value: String) {
         Text(text = value)
     }
 }
-
-@Composable
-@Preview
-fun DialogPrev() {
-    val displayDialog = remember {
-        mutableStateOf(true)
-    }
-    ReMedTheme() {
-
-        CustomDialog(openCustomDialog = displayDialog) { }
-    }
-}

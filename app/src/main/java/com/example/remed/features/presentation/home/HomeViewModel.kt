@@ -48,13 +48,19 @@ class HomeViewModel @Inject constructor(private val useCase: ReMedUseCase) : Vie
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun getCurrentReminder() {
+        var oldDifference: Int = 0
         val currentDate = getTodayDate()
         val currentTime = getCurrentTime()
         if (state.value.remeds.isNotEmpty()) {
             state.value.remeds.forEach { reminder ->
-                if (getDateFromString(reminder.startDate) <= currentDate
-                    && getDateFromString(reminder.endDate) >= currentDate) {
-                    if (getTimeFromString(currentDate.toString() + " ${reminder.time}") < currentTime) {
+                if (currentDate >= getDateFromString(reminder.startDate)
+                    && currentDate <= getDateFromString(reminder.endDate)) {
+                        val reminderTime = getTimeFromString(currentDate.toString() + " ${reminder.time}")
+                        val diff = reminderTime.compareTo(currentTime)
+                    if (oldDifference == 0) {
+                        state.value.currentRemed = reminder
+                        oldDifference = diff
+                    } else if (diff < oldDifference) {
                         state.value.currentRemed = reminder
                     }
                 }

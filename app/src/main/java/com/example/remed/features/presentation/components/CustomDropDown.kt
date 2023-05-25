@@ -135,17 +135,3 @@ fun DropdownMenuItem(
         }
     }
 }
-
-@Composable
-@Preview
-fun PreviewDropDown() {
-    MaterialTheme() {
-        var selectedIndex by remember { mutableStateOf(-1) }
-        ReMedDropDown(
-            label = "Sample",
-            items = listOf("Item 1", "Item 2", "Item 3"),
-            selectedIndex = selectedIndex,
-            onItemSelected = { index, _ -> selectedIndex = index },
-        )
-    }
-}

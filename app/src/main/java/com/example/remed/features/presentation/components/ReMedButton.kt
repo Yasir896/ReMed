@@ -68,15 +68,3 @@ fun ReMedButton(
         }
     }
 }
-
-@Preview
-@Composable
-private fun ButtonPreview() {
-    ReMedTheme {
-        ReMedButton(onClick = {}, enabled = false) {
-            Text("Create New",
-                color = ReMedTheme.colors.uiBackground,
-                style = MaterialTheme.typography.body2)
-        }
-    }
-}

@@ -49,7 +49,6 @@ fun HomeScreenContent(
     takeToAddNewScreen: () -> Unit,
     takeToSettingsScreen: () -> Unit,
 ) {
-
     Scaffold(
         topBar = {
             TopBarLarge(
@@ -123,7 +122,6 @@ fun BottomBarButton(modifier: Modifier, onClickNew: () -> Unit) {
         modifier = modifier,
         color = ReMedTheme.colors.light
     ) {
-
         Row(
             modifier = Modifier
                 .fillMaxWidth()
