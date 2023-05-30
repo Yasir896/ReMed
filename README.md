@@ -7,7 +7,6 @@ This Application is a Reminder for daily Medication intake. User can Create and 
 - View reminders
 - add new reminders
 
-
 ### Architecture
 Built with MVVM clean code.
 
