@@ -15,7 +15,6 @@ class AlarmSchedulerImpl(private val context: Context): AlarmScheduler {
     @RequiresApi(Build.VERSION_CODES.M)
     private val alarmManager = context.getSystemService(AlarmManager::class.java)
 
-
     @RequiresApi(Build.VERSION_CODES.O)
     override fun schedule(alarm: Alarm) {
         val intent = Intent(context, AlarmReceiver::class.java).apply {
@@ -46,5 +45,9 @@ class AlarmSchedulerImpl(private val context: Context): AlarmScheduler {
                 PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
             )
         )
+    }
+
+    override fun snoozed(alarm: Alarm) {
+
     }
 }
