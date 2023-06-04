@@ -47,7 +47,5 @@ class AlarmSchedulerImpl(private val context: Context): AlarmScheduler {
         )
     }
 
-    override fun snoozed(alarm: Alarm) {
-
-    }
+    override fun snoozed(alarm: Alarm) { }
 }
