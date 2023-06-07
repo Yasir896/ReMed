@@ -65,17 +65,17 @@ fun HomeScreenContent(
     ) {
         if (state.remeds.isNotEmpty()) {
             LazyColumn(modifier = Modifier.fillMaxSize()) {
-                item {
-                    Text(
-                        modifier = Modifier.padding(horizontal = 24.dp, vertical = 16.dp),
-                        color = ReMedTheme.colors.textPrimary,
-                        text = "Current ReMed",
-                        fontWeight = FontWeight.Medium,
-                        fontSize = 16.sp,
-                        textAlign = TextAlign.Left
-                    )
-                }
                 state.currentRemed?.let { current ->
+                    item {
+                        Text(
+                            modifier = Modifier.padding(horizontal = 24.dp, vertical = 16.dp),
+                            color = ReMedTheme.colors.textPrimary,
+                            text = "Current ReMed",
+                            fontWeight = FontWeight.Medium,
+                            fontSize = 16.sp,
+                            textAlign = TextAlign.Left
+                        )
+                    }
                     item {
                         ReminderCard(
                             reminder = current,

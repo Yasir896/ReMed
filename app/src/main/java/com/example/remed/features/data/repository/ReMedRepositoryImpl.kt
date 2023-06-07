@@ -21,5 +21,9 @@ class ReMedRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun deleteReMed(remed: ReMed) {
+        dao.deleteReMed(remed.domainToEntity())
+    }
+
 
 }

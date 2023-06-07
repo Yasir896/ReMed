@@ -7,6 +7,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.remed.features.domain.model.ReMed
 import com.example.remed.features.domain.usecases.ReMedUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -37,18 +38,21 @@ class HomeViewModel @Inject constructor(private val useCase: ReMedUseCase) : Vie
                 _state.value = state.value.copy(
                     remeds = remeds
                 )
-
-                if (state.value != null) {
-                    getCurrentReminder()
-                }
+                processReminders()
             }
+        }
+    }
+
+    private fun deleteRemed(remed: ReMed) {
+        viewModelScope.launch {
+            useCase.deleteUseCase.invoke(remed)
         }
     }
 
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun getCurrentReminder() {
-        var oldDifference: Int = 0
+    fun processReminders() {
+        var oldDifference = 0
         val currentDate = getTodayDate()
         val currentTime = getCurrentTime()
         if (state.value.remeds.isNotEmpty()) {
@@ -63,6 +67,8 @@ class HomeViewModel @Inject constructor(private val useCase: ReMedUseCase) : Vie
                     } else if (diff < oldDifference) {
                         state.value.currentRemed = reminder
                     }
+                } else {
+                    deleteRemed(reminder)
                 }
             }
         }
