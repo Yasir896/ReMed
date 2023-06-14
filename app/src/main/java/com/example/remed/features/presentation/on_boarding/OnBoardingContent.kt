@@ -40,21 +40,27 @@ fun OnBoardingContent(
 fun ImageWithAppName() {
     ImageContainerWithContent(
         modifier = Modifier.aspectRatio(1f, false),
-        R.drawable.ornamen_background_image,) {
+        R.drawable.ornamen_background_image,
+    ) {
         Box(modifier = Modifier.fillMaxSize()) {
             Column(
                 Modifier
                     .padding(30.dp)
                     .align(Alignment.TopEnd),
-                horizontalAlignment = Alignment.End) {
-                Text(text = "ReMed",
+                horizontalAlignment = Alignment.End
+            ) {
+                Text(
+                    text = "ReMed",
                     color = ReMedTheme.colors.light,
-                    style = MaterialTheme.typography.h5)
+                    style = MaterialTheme.typography.h5
+                )
 
-                Text(text = "About",
+                Text(
+                    text = "About",
                     color = ReMedTheme.colors.brand,
                     textDecoration = TextDecoration.Underline,
-                    style = MaterialTheme.typography.body1)
+                    style = MaterialTheme.typography.body1
+                )
             }
         }
     }
@@ -87,14 +93,19 @@ fun AppMessage() {
 
 @Composable
 fun FloatingActionButton(onClick: () -> Unit) {
-    Row(modifier = Modifier.fillMaxWidth(),
+    Row(
+        modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceEvenly) {
+        horizontalArrangement = Arrangement.SpaceEvenly
+    ) {
         androidx.compose.material.FloatingActionButton(
             backgroundColor = ReMedTheme.colors.brand,
-            onClick = onClick ) {
-            Image(painter = painterResource(id = R.drawable.ic_arrow),
-                contentDescription = null, )
+            onClick = onClick
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.ic_arrow),
+                contentDescription = null,
+            )
         }
     }
 }

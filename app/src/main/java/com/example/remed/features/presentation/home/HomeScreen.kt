@@ -79,7 +79,8 @@ fun HomeScreenContent(
                     item {
                         ReminderCard(
                             reminder = current,
-                            isCurrentReminder = true)
+                            isCurrentReminder = true
+                        )
                     }
                 }
                 item {
