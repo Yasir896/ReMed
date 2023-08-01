@@ -14,7 +14,6 @@ private val DarkColorPalette = ReMedColors(
     textSecondary = Grey,
     light = Lighter
 )
-
 /*private val LightColorPalette = ReMedColors(
     brand = Medium,
     brandSecondary = Light,
@@ -23,6 +22,7 @@ private val DarkColorPalette = ReMedColors(
     textSecondary = Grey,
     light = Black
 )*/
+
 
 @Composable
 fun ReMedTheme(

@@ -142,6 +142,5 @@ fun BottomBarButton(modifier: Modifier, onClickNew: () -> Unit) {
                 )
             }
         }
-
     }
 }
