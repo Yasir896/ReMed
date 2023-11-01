@@ -27,7 +27,8 @@ private val DarkColorPalette = ReMedColors(
 @Composable
 fun ReMedTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable () -> Unit) {
+    content: @Composable () -> Unit
+) {
 
     /*val colors = if (darkTheme) {
         DarkColorPalette
@@ -56,7 +57,7 @@ object ReMedTheme {
 
 
 /**
- ReMed Custom Color Pallet
+ReMed Custom Color Pallet
  */
 
 @Stable
@@ -114,7 +115,7 @@ fun ProvideReMedColors(
         colors.copy()
     }
     colorPalette.update(colors)
-    CompositionLocalProvider( localColorProvider provides colorPalette, content = content)
+    CompositionLocalProvider(localColorProvider provides colorPalette, content = content)
 }
 
 private val localColorProvider = staticCompositionLocalOf<ReMedColors> {
@@ -124,7 +125,7 @@ private val localColorProvider = staticCompositionLocalOf<ReMedColors> {
 fun debugColors(
     darkTheme: Boolean,
     debugColor: ReMedColors
-) = Colors (
+) = Colors(
     primary = debugColor.brand,
     primaryVariant = debugColor.brand,
     secondary = debugColor.brandSecondary,
@@ -138,4 +139,4 @@ fun debugColors(
     onSurface = debugColor.uiBackground,
     onError = debugColor.light,
     isLight = !darkTheme
-        )
+)

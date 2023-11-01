@@ -18,7 +18,7 @@ import java.time.LocalDateTime
 @Composable
 fun AlarmTestScreen() {
 
-    val alarmScheduler : AlarmScheduler = AlarmSchedulerImpl(LocalContext.current)
+    val alarmScheduler: AlarmScheduler = AlarmSchedulerImpl(LocalContext.current)
     var alarmTime: Alarm? = null
 
     var secondText by remember { mutableStateOf("") }
@@ -40,9 +40,11 @@ fun AlarmTestScreen() {
             }
         )
         Spacer(modifier = Modifier.height(8.dp))
-        OutlinedTextField(value = messageText, onValueChange = {
-            messageText = it
-        },
+        OutlinedTextField(
+            value = messageText,
+            onValueChange = {
+                messageText = it
+            },
             label = {
                 Text(text = "Message")
             },

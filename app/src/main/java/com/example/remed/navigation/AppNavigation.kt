@@ -17,39 +17,41 @@ import com.google.accompanist.navigation.animation.composable
 @ExperimentalCoilApi
 @Composable
 fun AppNavigation(navController: NavHostController) {
-        AnimatedNavHost(navController = navController,
-            startDestination = Screens.OnBoarding.route) {
+    AnimatedNavHost(
+        navController = navController,
+        startDestination = Screens.OnBoarding.route
+    ) {
 
 
-            composable(route = Screens.OnBoarding.route,
+        composable(route = Screens.OnBoarding.route,
             enterTransition = { tabEnterTransition() },
             exitTransition = { tabExitTransition() }) {
-                OnBoardingScreen {
-                    navController.navigate(Screens.Home.route)
-                }
-            }
-            composable(Screens.Home.route,
-                enterTransition = { tabEnterTransition() },
-                exitTransition = { tabExitTransition() }) {
-                HomeScreen(
-                    takeToAddNewScreen = { navController.navigate(Screens.CreateNew.route) },
-                    takeToSettingsScreen = { navController.navigate(Screens.Settings.route) }
-                )
-            }
-            composable(Screens.CreateNew.route,
-                enterTransition = { tabEnterTransition() },
-                exitTransition = { tabExitTransition() }) {
-                CreateNewReMedScreen(
-                    onNavigationClick = { navController.popBackStack()},
-                    onSettingsClick = { navController.navigate(Screens.Settings.route)}
-                )
-            }
-            composable(Screens.Settings.route,
-                enterTransition = { tabEnterTransition() },
-                exitTransition = { tabExitTransition() }) {
-                Settings { navController.popBackStack(Screens.Home.route, false) }
+            OnBoardingScreen {
+                navController.navigate(Screens.Home.route)
             }
         }
+        composable(Screens.Home.route,
+            enterTransition = { tabEnterTransition() },
+            exitTransition = { tabExitTransition() }) {
+            HomeScreen(
+                takeToAddNewScreen = { navController.navigate(Screens.CreateNew.route) },
+                takeToSettingsScreen = { navController.navigate(Screens.Settings.route) }
+            )
+        }
+        composable(Screens.CreateNew.route,
+            enterTransition = { tabEnterTransition() },
+            exitTransition = { tabExitTransition() }) {
+            CreateNewReMedScreen(
+                onNavigationClick = { navController.popBackStack() },
+                onSettingsClick = { navController.navigate(Screens.Settings.route) }
+            )
+        }
+        composable(Screens.Settings.route,
+            enterTransition = { tabEnterTransition() },
+            exitTransition = { tabExitTransition() }) {
+            Settings { navController.popBackStack(Screens.Home.route, false) }
+        }
+    }
 }
 
 /*private fun tabExitTransition(
@@ -61,4 +63,4 @@ private fun tabEnterTransition(
 ) = fadeIn(tween(duration, duration - delay))*/
 
 private fun tabExitTransition() = slideOutHorizontally(targetOffsetX = { 6000 })
-private fun tabEnterTransition() = slideInHorizontally( initialOffsetX = { 6000 })
+private fun tabEnterTransition() = slideInHorizontally(initialOffsetX = { 6000 })
