@@ -28,23 +28,24 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '17'
     }
     buildFeatures {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion compose_version
+        kotlinCompilerExtensionVersion =  '1.4.3'
     }
     packagingOptions {
         resources {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
+    namespace 'com.example.remed'
 }
 
 dependencies {
@@ -76,8 +77,8 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
 
     // Hilt
-    implementation "com.google.dagger:hilt-android:2.38.1"
-    kapt "com.google.dagger:hilt-android-compiler:2.38.1"
+    implementation "com.google.dagger:hilt-android:2.45"
+    kapt "com.google.dagger:hilt-android-compiler:2.45"
     implementation "androidx.hilt:hilt-navigation-compose:1.0.0"
 
 
